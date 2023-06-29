@@ -1,58 +1,57 @@
-package org.ModdoMarble;
-
 public class Player {
-    private String name;
-    private int money;
-    private int positon;
-
-    // 생성자
-    public Player(String name) {
+    public Player(String name, int money) {
         this.name = name;
+        this.money = money;
+        this.position = 0;
     }
+   public String getName() {
+       return getName();
+   }
+   public int getMoney() {
+        return getMoney();
+   }
+   public int getPosition() {
+        return getPosition();
+   }
+   String name;
+    int money = 5000;
+    int position = 0;
+    int turnCount;
+    String player;
+    int diceValue = (int) (Math.random() * 6 + 1);
 
-    public void move(int diceValue){
-
-    }
-    //통행료 지급
-    public void payToll(){
-
-    }
-    // 구매
-    public void purchaseProperty(){
-
-    }
-
-    // 파산인지 확인하기
-    public boolean checkBankruptcy(){
-        if (money < 0) {
-            return true;  // 파산 상태
-        } else {
-            return false; // 파산 상태가 아님
+    void Move(int diceValue) {
+        // position += diceValue
+        position += diceValue;
+        System.out.println(player + "의 위치 : " + player);
+        if (position > 10) {
+            int steps = position % 10;
+            position += steps;
         }
     }
 
+    void payToll(int toll) {
+        money -= toll;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
-    }
-
-    public int getPositon() {
-        return positon;
-    }
-
-    public void setPositon(int positon) {
-        this.positon = positon;
+        while (money > 0 || turnCount < 30) {
+            if (position > 0) {
+                if (money > 0) {
+                    money -= 600;
+                    System.out.println("통행료를 지불했습니다.");
+                } else {
+                    System.out.println("통행료를 지불할 수 없어 게임을 종료합니다.");
+                    break;
+                }
+            }
+            if (money > 0) {
+                int diceValue = (int) (Math.random() * 6 + 1);
+                System.out.println("주사위 결과: " + diceValue);
+            } else {
+                System.out.println("돈이 없어서 게임을 종료합니다.");
+            }
+        }
     }
 }
+
+
+
