@@ -17,24 +17,18 @@ public class Player {
     public void payToll(){
 
     }
-    // 미
     // 구매
-    public void purchaseProperty(City city){
-        if(money >= city.getPurchaseCost()){
-            if(city.getOwner() == null){
-                money -= 300;
-                city.setOwner(this);
-            }else{
-                System.out.println("이미 소유주가 있는 도시입니다!");
-            }
-        }else{
-            System.out.println("구입 비용이 부족합니다!");
-        }
+    public void purchaseProperty(){
+
     }
 
     // 파산인지 확인하기
     public boolean checkBankruptcy(){
-        return money <= 0;
+        if (money < 0) {
+            return true;  // 파산 상태
+        } else {
+            return false; // 파산 상태가 아님
+        }
     }
 
 
